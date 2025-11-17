@@ -3,7 +3,6 @@
 
 #include <QWidget>
 #include "particleeffect.h"
-#include "inputdialog.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -12,6 +11,7 @@ class MyWidget;//有人機介面的MyWidget
 QT_END_NAMESPACE
 
 class QPushButton;
+class InputDialog;  // 前向聲明
 
 class MyWidget : public QWidget//沒有人機介面的MyWidget
 {

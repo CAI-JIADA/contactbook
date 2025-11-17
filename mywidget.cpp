@@ -1,5 +1,6 @@
 #include "mywidget.h"
 #include "ui_mywidget.h"
+#include "inputdialog.h"
 #include<QTableWidgetItem>
 #include<QFile>
 #include<QDebug>

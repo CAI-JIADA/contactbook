@@ -11,11 +11,8 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
-#include <QtWidgets/QFormLayout>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
-#include <QtWidgets/QLabel>
-#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QTableWidget>
@@ -29,15 +26,6 @@ class Ui_MyWidget
 public:
     QVBoxLayout *verticalLayout;
     QTableWidget *tableWidget;
-    QFormLayout *formLayout;
-    QLabel *label;
-    QLineEdit *lineEdit;
-    QLabel *label_2;
-    QLineEdit *lineEdit_2;
-    QLabel *label_3;
-    QLineEdit *lineEdit_3;
-    QLabel *label_4;
-    QLineEdit *lineEdit_4;
     QHBoxLayout *horizontalLayout;
     QSpacerItem *horizontalSpacer;
     QPushButton *pushButton;
@@ -159,54 +147,6 @@ public:
 
         verticalLayout->addWidget(tableWidget);
 
-        formLayout = new QFormLayout();
-        formLayout->setObjectName("formLayout");
-        formLayout->setHorizontalSpacing(15);
-        formLayout->setVerticalSpacing(12);
-        formLayout->setContentsMargins(10, 10, 10, 10);
-        label = new QLabel(MyWidget);
-        label->setObjectName("label");
-
-        formLayout->setWidget(0, QFormLayout::LabelRole, label);
-
-        lineEdit = new QLineEdit(MyWidget);
-        lineEdit->setObjectName("lineEdit");
-
-        formLayout->setWidget(0, QFormLayout::FieldRole, lineEdit);
-
-        label_2 = new QLabel(MyWidget);
-        label_2->setObjectName("label_2");
-
-        formLayout->setWidget(1, QFormLayout::LabelRole, label_2);
-
-        lineEdit_2 = new QLineEdit(MyWidget);
-        lineEdit_2->setObjectName("lineEdit_2");
-
-        formLayout->setWidget(1, QFormLayout::FieldRole, lineEdit_2);
-
-        label_3 = new QLabel(MyWidget);
-        label_3->setObjectName("label_3");
-
-        formLayout->setWidget(2, QFormLayout::LabelRole, label_3);
-
-        lineEdit_3 = new QLineEdit(MyWidget);
-        lineEdit_3->setObjectName("lineEdit_3");
-
-        formLayout->setWidget(2, QFormLayout::FieldRole, lineEdit_3);
-
-        label_4 = new QLabel(MyWidget);
-        label_4->setObjectName("label_4");
-
-        formLayout->setWidget(3, QFormLayout::LabelRole, label_4);
-
-        lineEdit_4 = new QLineEdit(MyWidget);
-        lineEdit_4->setObjectName("lineEdit_4");
-
-        formLayout->setWidget(3, QFormLayout::FieldRole, lineEdit_4);
-
-
-        verticalLayout->addLayout(formLayout);
-
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName("horizontalLayout");
         horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
@@ -261,26 +201,6 @@ public:
     void retranslateUi(QWidget *MyWidget)
     {
         MyWidget->setWindowTitle(QCoreApplication::translate("MyWidget", "\351\200\232\350\250\212\351\214\204\347\256\241\347\220\206\347\263\273\347\265\261", nullptr));
-        label->setText(QCoreApplication::translate("MyWidget", "\345\255\270\350\231\237:", nullptr));
-#if QT_CONFIG(tooltip)
-        lineEdit->setToolTip(QCoreApplication::translate("MyWidget", "\350\253\213\350\274\270\345\205\245\345\255\270\350\231\237", nullptr));
-#endif // QT_CONFIG(tooltip)
-        lineEdit->setPlaceholderText(QCoreApplication::translate("MyWidget", "\350\253\213\350\274\270\345\205\245\345\255\270\350\231\237", nullptr));
-        label_2->setText(QCoreApplication::translate("MyWidget", "\347\217\255\347\264\232:", nullptr));
-#if QT_CONFIG(tooltip)
-        lineEdit_2->setToolTip(QCoreApplication::translate("MyWidget", "\350\253\213\350\274\270\345\205\245\347\217\255\347\264\232", nullptr));
-#endif // QT_CONFIG(tooltip)
-        lineEdit_2->setPlaceholderText(QCoreApplication::translate("MyWidget", "\350\253\213\350\274\270\345\205\245\347\217\255\347\264\232", nullptr));
-        label_3->setText(QCoreApplication::translate("MyWidget", "\345\247\223\345\220\215:", nullptr));
-#if QT_CONFIG(tooltip)
-        lineEdit_3->setToolTip(QCoreApplication::translate("MyWidget", "\350\253\213\350\274\270\345\205\245\345\247\223\345\220\215", nullptr));
-#endif // QT_CONFIG(tooltip)
-        lineEdit_3->setPlaceholderText(QCoreApplication::translate("MyWidget", "\350\253\213\350\274\270\345\205\245\345\247\223\345\220\215", nullptr));
-        label_4->setText(QCoreApplication::translate("MyWidget", "\351\233\273\350\251\261:", nullptr));
-#if QT_CONFIG(tooltip)
-        lineEdit_4->setToolTip(QCoreApplication::translate("MyWidget", "\350\253\213\350\274\270\345\205\245\351\233\273\350\251\261\350\231\237\347\242\274", nullptr));
-#endif // QT_CONFIG(tooltip)
-        lineEdit_4->setPlaceholderText(QCoreApplication::translate("MyWidget", "\350\253\213\350\274\270\345\205\245\351\233\273\350\251\261\350\231\237\347\242\274", nullptr));
 #if QT_CONFIG(tooltip)
         pushButton->setToolTip(QCoreApplication::translate("MyWidget", "\346\226\260\345\242\236\350\201\257\347\265\241\344\272\272\345\210\260\345\210\227\350\241\250", nullptr));
 #endif // QT_CONFIG(tooltip)

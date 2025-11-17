@@ -69,3 +69,16 @@ void MyWidget::on_pushButton_2_clicked()
     Write(mFilename,saveFile);
 }
 
+
+void MyWidget::on_pushButton_4_clicked()
+{
+    on_pushButton_2_clicked();
+    close();
+}
+
+
+void MyWidget::on_pushButton_3_clicked()
+{
+
+}
+

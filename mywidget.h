@@ -17,6 +17,9 @@ public:
     MyWidget(QWidget *parent = nullptr);
     ~MyWidget();
 
+private slots:
+    void on_pushButton_clicked();
+
 private:
     Ui::MyWidget *ui;//用指標連制有人機介面的MyWidget
 };

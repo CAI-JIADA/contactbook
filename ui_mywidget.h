@@ -43,6 +43,10 @@ public:
     QPushButton *pushButton;
     QSpacerItem *horizontalSpacer_2;
     QPushButton *pushButton_2;
+    QSpacerItem *horizontalSpacer_5;
+    QPushButton *pushButton_3;
+    QSpacerItem *horizontalSpacer_4;
+    QPushButton *pushButton_4;
     QSpacerItem *horizontalSpacer_3;
 
     void setupUi(QWidget *MyWidget)
@@ -122,6 +126,24 @@ public:
 
         horizontalLayout->addWidget(pushButton_2);
 
+        horizontalSpacer_5 = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
+
+        horizontalLayout->addItem(horizontalSpacer_5);
+
+        pushButton_3 = new QPushButton(MyWidget);
+        pushButton_3->setObjectName("pushButton_3");
+
+        horizontalLayout->addWidget(pushButton_3);
+
+        horizontalSpacer_4 = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
+
+        horizontalLayout->addItem(horizontalSpacer_4);
+
+        pushButton_4 = new QPushButton(MyWidget);
+        pushButton_4->setObjectName("pushButton_4");
+
+        horizontalLayout->addWidget(pushButton_4);
+
         horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
 
         horizontalLayout->addItem(horizontalSpacer_3);
@@ -144,6 +166,8 @@ public:
         label_4->setText(QCoreApplication::translate("MyWidget", "\351\233\273\350\251\261:", nullptr));
         pushButton->setText(QCoreApplication::translate("MyWidget", "\346\226\260\345\242\236", nullptr));
         pushButton_2->setText(QCoreApplication::translate("MyWidget", "\345\214\257\345\207\272", nullptr));
+        pushButton_3->setText(QCoreApplication::translate("MyWidget", "\345\214\257\345\205\245", nullptr));
+        pushButton_4->setText(QCoreApplication::translate("MyWidget", "\347\265\220\346\235\237", nullptr));
     } // retranslateUi
 
 };

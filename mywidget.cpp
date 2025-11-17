@@ -3,6 +3,10 @@
 #include<QTableWidgetItem>
 #include<QFile>
 #include<QDebug>
+#include <QFileDialog>
+#include <QTextStream>
+#include <QMessageBox>
+#include <QFile>
 //#include "QDebug"
 QString mFilename ="C:/Users/user/Desktop/EX/contackbook.txt";
 void Write(QString Filename,QString str)
@@ -55,6 +59,22 @@ void MyWidget::on_pushButton_clicked()
 }
 
 
+void MyWidget::on_pushButton_3_clicked()
+{
+
+}
+
+
+void MyWidget::on_pushButton_4_clicked()
+{
+    on_pushButton_3_clicked();
+    close();
+}
+
+
+
+
+
 void MyWidget::on_pushButton_2_clicked()
 {
     QString saveFile="";
@@ -67,18 +87,5 @@ void MyWidget::on_pushButton_2_clicked()
         saveFile+="\n";
     }
     Write(mFilename,saveFile);
-}
-
-
-void MyWidget::on_pushButton_4_clicked()
-{
-    on_pushButton_2_clicked();
-    close();
-}
-
-
-void MyWidget::on_pushButton_3_clicked()
-{
-
 }
 

@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include "particleeffect.h"
+#include "inputdialog.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {

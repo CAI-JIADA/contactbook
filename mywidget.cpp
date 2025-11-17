@@ -49,20 +49,36 @@ void MyWidget::on_pushButton_clicked()
     // 觸發綠色粒子特效 (新增按鈕)
     triggerButtonEffect(ui->pushButton, QColor(76, 175, 80));
     
-    QTableWidgetItem *inputRow1,*inputRow2,*inputRow3,*inputRow4;
-    inputRow1 = new QTableWidgetItem(QString(ui->lineEdit->text()));
-    inputRow2 = new QTableWidgetItem(QString(ui->lineEdit_2->text()));
-    inputRow3 = new QTableWidgetItem(QString(ui->lineEdit_3->text()));
-    inputRow4 = new QTableWidgetItem(QString(ui->lineEdit_4->text()));
-    int rc=ui->tableWidget->rowCount();
-    qDebug()<<rc<<"\n";
-    //ui->tableWidget->insertRow(rc);
-    ui->tableWidget->insertRow(ui->tableWidget->rowCount());
-    ui->tableWidget->setItem(ui->tableWidget->rowCount()-1,0,inputRow1);
-    ui->tableWidget->setItem(ui->tableWidget->rowCount()-1,1,inputRow2);
-    ui->tableWidget->setItem(ui->tableWidget->rowCount()-1,2,inputRow3);
-    ui->tableWidget->setItem(ui->tableWidget->rowCount()-1,3,inputRow4);
-
+    // 開啟輸入對話框
+    InputDialog dialog(this);
+    if (dialog.exec() == QDialog::Accepted) {
+        // 取得輸入的資料
+        QString studentId = dialog.getStudentId();
+        QString className = dialog.getClassName();
+        QString name = dialog.getName();
+        QString phone = dialog.getPhone();
+        
+        // 檢查是否有輸入資料
+        if (studentId.isEmpty() && className.isEmpty() && name.isEmpty() && phone.isEmpty()) {
+            return; // 如果都是空的就不新增
+        }
+        
+        // 新增到表格
+        QTableWidgetItem *inputRow1, *inputRow2, *inputRow3, *inputRow4;
+        inputRow1 = new QTableWidgetItem(studentId);
+        inputRow2 = new QTableWidgetItem(className);
+        inputRow3 = new QTableWidgetItem(name);
+        inputRow4 = new QTableWidgetItem(phone);
+        
+        int rc = ui->tableWidget->rowCount();
+        qDebug() << rc << "\n";
+        
+        ui->tableWidget->insertRow(ui->tableWidget->rowCount());
+        ui->tableWidget->setItem(ui->tableWidget->rowCount()-1, 0, inputRow1);
+        ui->tableWidget->setItem(ui->tableWidget->rowCount()-1, 1, inputRow2);
+        ui->tableWidget->setItem(ui->tableWidget->rowCount()-1, 2, inputRow3);
+        ui->tableWidget->setItem(ui->tableWidget->rowCount()-1, 3, inputRow4);
+    }
 }
 
 

@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mywidget.ui'
 **
-** Created by: Qt User Interface Compiler version 6.9.1
+** Created by: Qt User Interface Compiler version 6.4.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -44,6 +44,8 @@ public:
     QSpacerItem *horizontalSpacer_2;
     QPushButton *pushButton_2;
     QSpacerItem *horizontalSpacer_3;
+    QPushButton *pushButton_3;
+    QSpacerItem *horizontalSpacer_4;
 
     void setupUi(QWidget *MyWidget)
     {
@@ -62,49 +64,49 @@ public:
         label = new QLabel(MyWidget);
         label->setObjectName("label");
 
-        formLayout->setWidget(0, QFormLayout::ItemRole::LabelRole, label);
+        formLayout->setWidget(0, QFormLayout::LabelRole, label);
 
         lineEdit = new QLineEdit(MyWidget);
         lineEdit->setObjectName("lineEdit");
 
-        formLayout->setWidget(0, QFormLayout::ItemRole::FieldRole, lineEdit);
+        formLayout->setWidget(0, QFormLayout::FieldRole, lineEdit);
 
         label_2 = new QLabel(MyWidget);
         label_2->setObjectName("label_2");
 
-        formLayout->setWidget(1, QFormLayout::ItemRole::LabelRole, label_2);
+        formLayout->setWidget(1, QFormLayout::LabelRole, label_2);
 
         lineEdit_2 = new QLineEdit(MyWidget);
         lineEdit_2->setObjectName("lineEdit_2");
 
-        formLayout->setWidget(1, QFormLayout::ItemRole::FieldRole, lineEdit_2);
+        formLayout->setWidget(1, QFormLayout::FieldRole, lineEdit_2);
 
         label_3 = new QLabel(MyWidget);
         label_3->setObjectName("label_3");
 
-        formLayout->setWidget(2, QFormLayout::ItemRole::LabelRole, label_3);
+        formLayout->setWidget(2, QFormLayout::LabelRole, label_3);
 
         lineEdit_3 = new QLineEdit(MyWidget);
         lineEdit_3->setObjectName("lineEdit_3");
 
-        formLayout->setWidget(2, QFormLayout::ItemRole::FieldRole, lineEdit_3);
+        formLayout->setWidget(2, QFormLayout::FieldRole, lineEdit_3);
 
         label_4 = new QLabel(MyWidget);
         label_4->setObjectName("label_4");
 
-        formLayout->setWidget(3, QFormLayout::ItemRole::LabelRole, label_4);
+        formLayout->setWidget(3, QFormLayout::LabelRole, label_4);
 
         lineEdit_4 = new QLineEdit(MyWidget);
         lineEdit_4->setObjectName("lineEdit_4");
 
-        formLayout->setWidget(3, QFormLayout::ItemRole::FieldRole, lineEdit_4);
+        formLayout->setWidget(3, QFormLayout::FieldRole, lineEdit_4);
 
 
         verticalLayout->addLayout(formLayout);
 
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName("horizontalLayout");
-        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
+        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         horizontalLayout->addItem(horizontalSpacer);
 
@@ -113,7 +115,7 @@ public:
 
         horizontalLayout->addWidget(pushButton);
 
-        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
+        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         horizontalLayout->addItem(horizontalSpacer_2);
 
@@ -122,9 +124,18 @@ public:
 
         horizontalLayout->addWidget(pushButton_2);
 
-        horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
+        horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         horizontalLayout->addItem(horizontalSpacer_3);
+
+        pushButton_3 = new QPushButton(MyWidget);
+        pushButton_3->setObjectName("pushButton_3");
+
+        horizontalLayout->addWidget(pushButton_3);
+
+        horizontalSpacer_4 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout->addItem(horizontalSpacer_4);
 
 
         verticalLayout->addLayout(horizontalLayout);
@@ -144,6 +155,7 @@ public:
         label_4->setText(QCoreApplication::translate("MyWidget", "\351\233\273\350\251\261:", nullptr));
         pushButton->setText(QCoreApplication::translate("MyWidget", "\346\226\260\345\242\236", nullptr));
         pushButton_2->setText(QCoreApplication::translate("MyWidget", "\345\214\257\345\207\272", nullptr));
+        pushButton_3->setText(QCoreApplication::translate("MyWidget", "\345\214\257\345\205\245", nullptr));
     } // retranslateUi
 
 };

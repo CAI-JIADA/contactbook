@@ -80,3 +80,16 @@ CMakeLists.txt.user*
 .rcc/
 .uic/
 /build*/
+
+# Build artifacts
+ContactBook
+moc_*.cpp
+moc_*.h
+moc_predefs.h
+ui_*.h
+*.o
+Makefile
+Makefile.Debug
+Makefile.Release
+_codeql_detected_source_root
+.qmake.stash

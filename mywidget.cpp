@@ -6,7 +6,6 @@
 #include <QFileDialog>
 #include <QTextStream>
 #include <QMessageBox>
-#include <QFile>
 //#include "QDebug"
 QString mFilename ="C:/Users/user/Desktop/EX/contackbook.txt";
 void Write(QString Filename,QString str)
@@ -61,23 +60,50 @@ void MyWidget::on_pushButton_clicked()
 
 void MyWidget::on_pushButton_3_clicked()
 {
-
+    QString fileName = QFileDialog::getOpenFileName(this,QStringLiteral("匯入聯絡人"),"",QStringLiteral("文字檔案 (*.txt);;CSV檔案 (*.csv);;所有檔案 (*.*)"));
+    if (fileName.isEmpty()) {
+        return;
+    }
+    QFile file(fileName);
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        QMessageBox::warning(this, QStringLiteral("錯誤"),QStringLiteral("無法開啟檔案：") + fileName);
+        return;
+    }
+    QTextStream in(&file);
+    int importCount = 0;
+    while (!in.atEnd()) {
+        QString line = in.readLine().trimmed();
+        if (line.isEmpty()) {
+            continue;
+        }
+        QStringList fields;
+        if (line.contains(',')) {
+            fields = line.split(',');
+        } else if (line.contains('\t')) {
+            fields = line.split('\t');
+        } else {
+            fields = line.split(' ', Qt::SkipEmptyParts);
+        }
+        int row = ui->tableWidget->rowCount();
+        ui->tableWidget->insertRow(row);
+        ui->tableWidget->setItem(row, 0, new QTableWidgetItem(fields[0].trimmed()));
+        ui->tableWidget->setItem(row, 1, new QTableWidgetItem(fields[1].trimmed()));
+        ui->tableWidget->setItem(row, 2, new QTableWidgetItem(fields[2].trimmed()));
+        ui->tableWidget->setItem(row, 3, new QTableWidgetItem(fields[3].trimmed()));
+        importCount++;
+    }
+    file.close();
 }
-
 
 void MyWidget::on_pushButton_4_clicked()
 {
-    on_pushButton_3_clicked();
+    on_pushButton_2_clicked();
     close();
 }
-
-
-
-
-
 void MyWidget::on_pushButton_2_clicked()
 {
     QString saveFile="";
+    mFilename=QFileDialog::getSaveFileName(this,"匯出檔案",".");
     for(int i=0;i<ui->tableWidget->rowCount();i++)
     {
         for(int j=0;j<ui->tableWidget->columnCount();j++)

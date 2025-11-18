@@ -2,6 +2,7 @@
 #include "ui_mywidget.h"
 #include "inputdialog.h"
 #include<QTableWidgetItem>
+#include<QHeaderView>
 #include<QFile>
 #include<QDebug>
 #include <QFileDialog>
@@ -33,6 +34,9 @@ MyWidget::MyWidget(QWidget *parent)
     ui->tableWidget->setColumnCount(4);
     ColTotle<<QStringLiteral("學號")<<QStringLiteral("班級")<<QStringLiteral("姓名")<<QStringLiteral("電話");
     ui->tableWidget->setHorizontalHeaderLabels(ColTotle);
+    
+    // 設置表格欄位寬度自動填滿
+    ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     
     // 初始化粒子特效
     particleEffect = new ParticleEffect(this);

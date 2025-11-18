@@ -141,7 +141,19 @@ void MyWidget::on_pushButton_2_clicked()
     triggerButtonEffect(ui->pushButton_2, QColor(255, 152, 0));
     
     QString saveFile="";
-    mFilename=QFileDialog::getSaveFileName(this,"匯出檔案",".");
+    // 設定預設檔名和副檔名過濾器，確保匯出為 .txt 檔案
+    mFilename=QFileDialog::getSaveFileName(this, "匯出檔案", "contactbook.txt", "文字檔案 (*.txt)");
+    
+    // 如果使用者取消對話框，直接返回
+    if (mFilename.isEmpty()) {
+        return;
+    }
+    
+    // 確保檔名結尾為 .txt
+    if (!mFilename.endsWith(".txt", Qt::CaseInsensitive)) {
+        mFilename += ".txt";
+    }
+    
     for(int i=0;i<ui->tableWidget->rowCount();i++)
     {
         for(int j=0;j<ui->tableWidget->columnCount();j++)

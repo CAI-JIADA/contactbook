@@ -10,10 +10,14 @@ CONFIG += c++17
 
 SOURCES += \
     main.cpp \
-    mywidget.cpp
+    mywidget.cpp \
+    particleeffect.cpp \
+    inputdialog.cpp
 
 HEADERS += \
-    mywidget.h
+    mywidget.h \
+    particleeffect.h \
+    inputdialog.h
 
 FORMS += \
     mywidget.ui

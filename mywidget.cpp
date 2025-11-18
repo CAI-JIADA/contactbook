@@ -1,11 +1,14 @@
 #include "mywidget.h"
 #include "ui_mywidget.h"
+#include "inputdialog.h"
 #include<QTableWidgetItem>
+#include<QHeaderView>
 #include<QFile>
 #include<QDebug>
 #include <QFileDialog>
 #include <QTextStream>
 #include <QMessageBox>
+#include <QPushButton>
 //#include "QDebug"
 QString mFilename ="C:/Users/user/Desktop/EX/contackbook.txt";
 void Write(QString Filename,QString str)
@@ -31,35 +34,64 @@ MyWidget::MyWidget(QWidget *parent)
     ui->tableWidget->setColumnCount(4);
     ColTotle<<QStringLiteral("學號")<<QStringLiteral("班級")<<QStringLiteral("姓名")<<QStringLiteral("電話");
     ui->tableWidget->setHorizontalHeaderLabels(ColTotle);
+    
+    // 設置表格欄位寬度自動填滿
+    ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    
+    // 初始化粒子特效
+    particleEffect = new ParticleEffect(this);
 }
 
 MyWidget::~MyWidget()
 {
+    delete particleEffect;
     delete ui;
 }
 
 
 void MyWidget::on_pushButton_clicked()
 {
-    QTableWidgetItem *inputRow1,*inputRow2,*inputRow3,*inputRow4;
-    inputRow1 = new QTableWidgetItem(QString(ui->lineEdit->text()));
-    inputRow2 = new QTableWidgetItem(QString(ui->lineEdit_2->text()));
-    inputRow3 = new QTableWidgetItem(QString(ui->lineEdit_3->text()));
-    inputRow4 = new QTableWidgetItem(QString(ui->lineEdit_4->text()));
-    int rc=ui->tableWidget->rowCount();
-    qDebug()<<rc<<"\n";
-    //ui->tableWidget->insertRow(rc);
-    ui->tableWidget->insertRow(ui->tableWidget->rowCount());
-    ui->tableWidget->setItem(ui->tableWidget->rowCount()-1,0,inputRow1);
-    ui->tableWidget->setItem(ui->tableWidget->rowCount()-1,1,inputRow2);
-    ui->tableWidget->setItem(ui->tableWidget->rowCount()-1,2,inputRow3);
-    ui->tableWidget->setItem(ui->tableWidget->rowCount()-1,3,inputRow4);
-
+    // 觸發綠色粒子特效 (新增按鈕)
+    triggerButtonEffect(ui->pushButton, QColor(76, 175, 80));
+    
+    // 開啟輸入對話框
+    InputDialog dialog(this);
+    if (dialog.exec() == QDialog::Accepted) {
+        // 取得輸入的資料
+        QString studentId = dialog.getStudentId();
+        QString className = dialog.getClassName();
+        QString name = dialog.getName();
+        QString phone = dialog.getPhone();
+        
+        // 檢查是否有輸入資料
+        if (studentId.isEmpty() && className.isEmpty() && name.isEmpty() && phone.isEmpty()) {
+            return; // 如果都是空的就不新增
+        }
+        
+        // 新增到表格
+        QTableWidgetItem *inputRow1, *inputRow2, *inputRow3, *inputRow4;
+        inputRow1 = new QTableWidgetItem(studentId);
+        inputRow2 = new QTableWidgetItem(className);
+        inputRow3 = new QTableWidgetItem(name);
+        inputRow4 = new QTableWidgetItem(phone);
+        
+        int rc = ui->tableWidget->rowCount();
+        qDebug() << rc << "\n";
+        
+        ui->tableWidget->insertRow(ui->tableWidget->rowCount());
+        ui->tableWidget->setItem(ui->tableWidget->rowCount()-1, 0, inputRow1);
+        ui->tableWidget->setItem(ui->tableWidget->rowCount()-1, 1, inputRow2);
+        ui->tableWidget->setItem(ui->tableWidget->rowCount()-1, 2, inputRow3);
+        ui->tableWidget->setItem(ui->tableWidget->rowCount()-1, 3, inputRow4);
+    }
 }
 
 
 void MyWidget::on_pushButton_3_clicked()
 {
+    // 觸發藍色粒子特效 (匯入按鈕)
+    triggerButtonEffect(ui->pushButton_3, QColor(33, 150, 243));
+    
     QString fileName = QFileDialog::getOpenFileName(this,QStringLiteral("匯入聯絡人"),"",QStringLiteral("文字檔案 (*.txt);;CSV檔案 (*.csv);;所有檔案 (*.*)"));
     if (fileName.isEmpty()) {
         return;
@@ -97,13 +129,31 @@ void MyWidget::on_pushButton_3_clicked()
 
 void MyWidget::on_pushButton_4_clicked()
 {
+    // 觸發紅色粒子特效 (結束按鈕)
+    triggerButtonEffect(ui->pushButton_4, QColor(244, 67, 54));
+    
     on_pushButton_2_clicked();
     close();
 }
 void MyWidget::on_pushButton_2_clicked()
 {
+    // 觸發橙色粒子特效 (匯出按鈕)
+    triggerButtonEffect(ui->pushButton_2, QColor(255, 152, 0));
+    
     QString saveFile="";
-    mFilename=QFileDialog::getSaveFileName(this,"匯出檔案",".");
+    // 設定預設檔名和副檔名過濾器，確保匯出為 .txt 檔案
+    mFilename=QFileDialog::getSaveFileName(this, "匯出檔案", "contactbook.txt", "文字檔案 (*.txt)");
+    
+    // 如果使用者取消對話框，直接返回
+    if (mFilename.isEmpty()) {
+        return;
+    }
+    
+    // 確保檔名結尾為 .txt
+    if (!mFilename.endsWith(".txt", Qt::CaseInsensitive)) {
+        mFilename += ".txt";
+    }
+    
     for(int i=0;i<ui->tableWidget->rowCount();i++)
     {
         for(int j=0;j<ui->tableWidget->columnCount();j++)
@@ -113,5 +163,17 @@ void MyWidget::on_pushButton_2_clicked()
         saveFile+="\n";
     }
     Write(mFilename,saveFile);
+}
+
+// 觸發按鈕粒子特效的輔助函數
+void MyWidget::triggerButtonEffect(QPushButton *button, const QColor &color)
+{
+    if (!button || !particleEffect) return;
+    
+    // 獲取按鈕的中心位置（相對於主視窗）
+    QPoint buttonCenter = button->mapTo(this, button->rect().center());
+    
+    // 觸發粒子特效
+    particleEffect->triggerEffect(buttonCenter, color);
 }
 
